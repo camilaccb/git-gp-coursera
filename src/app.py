@@ -36,5 +36,5 @@ def update_item(item_id:int, item:Item):
         if item.is_offer 
         else None, item_id),)
     conn.commit()
-    print("item updated")
+    print("item updated ")
     return item
