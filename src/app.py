@@ -38,3 +38,19 @@ def update_item(item_id:int, item:Item):
     conn.commit()
     print("item updated")
     return item
+
+@app.get("/items/offers/")
+def get_offer_items():
+    """
+    API route to get all items that are offers.
+
+    Returns
+    -------
+    List[Item]
+        A list of items that are offers.
+    """
+    conn = get_db()
+    cursor = conn.cursor()
+    cursor.execute("SELECT id, name, price, is_offer FROM items WHERE is_offer = 1")
+    rows = cursor.fetchall()
+    return [Item(id=row[0], name=row[1], price=row[2], is_offer=bool(row[3])) for row in rows]
