@@ -4,7 +4,7 @@ from models import Item
 app = FastAPI()
 app.add_event_handler("startup", startup_event)
 @app.post("/items/")
-def create_item(item:Item):
+def create_item(item:Item,status_code=201):
     conn = get_db()
     cursor = conn.cursor()
     cursor.execute(
